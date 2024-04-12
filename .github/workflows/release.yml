@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   build:
-    name: "Build Windows standalone version"
+    name: "Build Linux standalone version"
     runs-on: ubuntu-latest
     steps:
       - name: "Checkout the repository"
@@ -33,6 +33,6 @@ jobs:
           path: yoga-bin.dist
       - name: "Upload to Github Release"
         run: |
-          gh release upload ${{ github.event.release.tag_name }} yoga-${{ github.event.release.tag_name }}_linux_standalone_x86-64
+          gh release upload ${{ github.event.release.tag_name }} yoga-${{ github.event.release.tag_name }}_linux_standalone_x86-64.zip
         env:
           GITHUB_TOKEN: ${{ github.TOKEN }}
