@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YOGA Image Command Line Interface &mdash; YOGA  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="YOGA Model Command Line Interface" href="model.html" />
+    <link rel="prev" title="Command Line Interface" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            YOGA
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installing YOGA</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Command Line Interface</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">YOGA Image Command Line Interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#basic-usage">Basic Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#output-format">Output Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#resize-output-image">Resize Output Image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#output-jpeg-quality">Output JPEG Quality</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#output-webp-quality">Output WEBP Quality</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opacity-threshold">Opacity Threshold</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#slow-png-optimization">Slow PNG Optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#color-quantization">Color Quantization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="model.html">YOGA Model Command Line Interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">YOGA</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Command Line Interface</a></li>
+      <li class="breadcrumb-item active">YOGA Image Command Line Interface</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/cli/image.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="yoga-image-command-line-interface">
+<h1>YOGA Image Command Line Interface<a class="headerlink" href="#yoga-image-command-line-interface" title="Link to this heading"></a></h1>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: yoga image [-h] [-v] [-q] [--output-format {orig,auto,jpeg,png}]
+                  [--resize {orig,&lt;SIZE&gt;,&lt;WIDTH&gt;x&lt;HEIGHT&gt;}] [--jpeg-quality 0-100]
+                  [--opacity-threshold 0-255]
+                  input output
+
+positional arguments:
+  input                 Input file path
+  output                Output file path
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -v, --verbose         enable verbose mode
+  -q, --quiet           enable quiet mode (takes precedence over verbose)
+  --output-format {orig,auto,jpeg,png,webp,webpl}
+                        format of the output image
+  --resize {orig,&lt;SIZE&gt;,&lt;WIDTH&gt;x&lt;HEIGHT&gt;}
+                        resize the image
+  --jpeg-quality 0-100  JPEG quality if the output format is set to &#39;jpeg&#39;
+  --webp-quality 0-100  WEBP quality if the output format is set to &#39;webp&#39;
+  --opacity-threshold 0-255
+                        threshold below which a pixel is considered transparent
+  --png-slow-optimization
+                        enable a (very) slow optimization preset for PNGs that
+                        can sometimes gain few bytes on the output file
+  --enable-quantization
+                        reduce the number of colors used in the image
+  --quantization-dithering-level 0.0-1.0
+                        the dithering level to use when
+                        --enable-quantization is set
+  --quantization-max-colors 1-256
+                        the maximum number of colors to use when
+                        --enable-quantization is set
+</pre></div>
+</div>
+<section id="basic-usage">
+<h2>Basic Usage<a class="headerlink" href="#basic-usage" title="Link to this heading"></a></h2>
+<p>The simplest way to optimize an image is by using the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yoga</span>  <span class="n">image</span>  <span class="nb">input</span><span class="o">.</span><span class="n">png</span>  <span class="n">output</span><span class="o">.</span><span class="n">png</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When the output format is not specified, YOGA outputs an image using the same format as the input one (<code class="docutils literal notranslate"><span class="pre">PNG</span></code> → <code class="docutils literal notranslate"><span class="pre">PNG</span></code>, <code class="docutils literal notranslate"><span class="pre">JPEG</span></code> → <code class="docutils literal notranslate"><span class="pre">JPEG</span></code>, <code class="docutils literal notranslate"><span class="pre">WEBP</span></code> → <code class="docutils literal notranslate"><span class="pre">WEBP</span></code>, <code class="docutils literal notranslate"><span class="pre">WEBP</span> <span class="pre">(lossless)</span></code> → <code class="docutils literal notranslate"><span class="pre">WEBP</span> <span class="pre">(lossless)</span></code>).</p>
+<p>Only PNGs, JPEGs and WEBPs are supported as input when the output format is not explicitly specified.</p>
+</div>
+</section>
+<section id="output-format">
+<h2>Output Format<a class="headerlink" href="#output-format" title="Link to this heading"></a></h2>
+<p>The output format can be specified using the <code class="docutils literal notranslate"><span class="pre">--output-format</span></code> option:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yoga</span>  <span class="n">image</span>  <span class="o">--</span><span class="n">ouput</span><span class="o">-</span><span class="nb">format</span><span class="o">=</span><span class="n">jpeg</span>   <span class="nb">input</span><span class="o">.</span><span class="n">png</span>  <span class="n">output</span><span class="o">.</span><span class="n">jpg</span>
+</pre></div>
+</div>
+<p>The following formats are supported:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">orig</span></code>: This is the default. The output format will be the same as the one of the input image.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">auto</span></code>: The output format is automatically selected. YOGA will generate a PNG if the input image is using transparency, else it will generate a JPEG.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">png</span></code>: Outputs a PNG image.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">jpeg</span></code>: Outputs a JPEG image.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">webp</span></code>: Outputs a lossy WEBP image.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">webpl</span></code>: Outputs a lossless WEBP image.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When using the <code class="docutils literal notranslate"><span class="pre">&quot;orig&quot;</span></code> output format, YOGA will only accept PNG, JPEG and WEBP images as input.</p>
+</div>
+</section>
+<section id="resize-output-image">
+<h2>Resize Output Image<a class="headerlink" href="#resize-output-image" title="Link to this heading"></a></h2>
+<p>YOGA allows you to resize images with the <code class="docutils literal notranslate"><span class="pre">--resize</span></code> option:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yoga</span>  <span class="n">image</span>  <span class="o">--</span><span class="n">resize</span><span class="o">=</span><span class="mi">512</span>  <span class="nb">input</span><span class="o">.</span><span class="n">png</span>  <span class="n">output</span><span class="o">.</span><span class="n">png</span>
+<span class="n">yoga</span>  <span class="n">image</span>  <span class="o">--</span><span class="n">resize</span><span class="o">=</span><span class="mi">512</span><span class="n">x512</span>  <span class="nb">input</span><span class="o">.</span><span class="n">png</span>  <span class="n">output</span><span class="o">.</span><span class="n">png</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If the width and the height have the same value, you do not have to specify both, so <code class="docutils literal notranslate"><span class="pre">512</span></code> and <code class="docutils literal notranslate"><span class="pre">512x512</span></code> are equivalent.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>YOGA always preserve the image’s aspect ratio; you can consider the size you provide as a box the image will fit in.</p>
+</div>
+</section>
+<section id="output-jpeg-quality">
+<h2>Output JPEG Quality<a class="headerlink" href="#output-jpeg-quality" title="Link to this heading"></a></h2>
+<p>YOGA allows you to tune the desired quality of the JPEG it outputs with the <code class="docutils literal notranslate"><span class="pre">--jpeg-quality</span></code> option. This option takes an integer between <code class="docutils literal notranslate"><span class="pre">0</span></code> and <code class="docutils literal notranslate"><span class="pre">100</span></code> as parameter:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code>: ugly images but smaller files,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">100</span></code>: best quality images but larger files.</p></li>
+</ul>
+<p>The default JPEG quality is <code class="docutils literal notranslate"><span class="pre">84%</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yoga</span>  <span class="n">image</span>  <span class="o">--</span><span class="n">output</span><span class="o">-</span><span class="nb">format</span><span class="o">=</span><span class="n">jpeg</span>  <span class="o">--</span><span class="n">jpeg</span><span class="o">-</span><span class="n">quality</span><span class="o">=</span><span class="mi">84</span>  <span class="nb">input</span><span class="o">.</span><span class="n">png</span>  <span class="n">output</span><span class="o">.</span><span class="n">jpg</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This option has effect only when the output image is a JPEG.</p>
+</div>
+</section>
+<section id="output-webp-quality">
+<h2>Output WEBP Quality<a class="headerlink" href="#output-webp-quality" title="Link to this heading"></a></h2>
+<p>YOGA allows you to tune the desired quality of the WEBP it outputs with the <code class="docutils literal notranslate"><span class="pre">--webp-quality</span></code> option. This option takes an integer between <code class="docutils literal notranslate"><span class="pre">0</span></code> and <code class="docutils literal notranslate"><span class="pre">100</span></code> as parameter:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code>: ugly images but smaller files,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">100</span></code>: best quality images but larger files.</p></li>
+</ul>
+<p>The default WEBP quality is <code class="docutils literal notranslate"><span class="pre">90%</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yoga</span>  <span class="n">image</span>  <span class="o">--</span><span class="n">output</span><span class="o">-</span><span class="nb">format</span><span class="o">=</span><span class="n">webp</span>  <span class="o">--</span><span class="n">webp</span><span class="o">-</span><span class="n">quality</span><span class="o">=</span><span class="mi">90</span>  <span class="nb">input</span><span class="o">.</span><span class="n">png</span>  <span class="n">output</span><span class="o">.</span><span class="n">webp</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This option has effect only when the output image is a lossy WEBP.</p>
+</div>
+</section>
+<section id="opacity-threshold">
+<h2>Opacity Threshold<a class="headerlink" href="#opacity-threshold" title="Link to this heading"></a></h2>
+<p>YOGA allows you to tune the threshold below which a pixel is considered transparent using the <code class="docutils literal notranslate"><span class="pre">--opacity-threshold</span></code> option. This option is only useful in addition to <code class="docutils literal notranslate"><span class="pre">--output-format=auto</span></code> and takes an integer between <code class="docutils literal notranslate"><span class="pre">0</span></code> and <code class="docutils literal notranslate"><span class="pre">255</span></code> as parameter:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code>: all pixels are considered transparent,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">255</span></code>: all pixels are considered opaque.</p></li>
+</ul>
+<p>The default value is <code class="docutils literal notranslate"><span class="pre">254</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yoga</span>  <span class="n">image</span>  <span class="o">--</span><span class="n">output</span><span class="o">-</span><span class="nb">format</span><span class="o">=</span><span class="n">auto</span>  <span class="o">--</span><span class="n">opacity</span><span class="o">-</span><span class="n">threshold</span><span class="o">=</span><span class="mi">254</span>  <span class="nb">input</span><span class="o">.</span><span class="n">png</span>  <span class="n">output</span><span class="o">.</span><span class="n">xxx</span>
+</pre></div>
+</div>
+</section>
+<section id="slow-png-optimization">
+<h2>Slow PNG Optimization<a class="headerlink" href="#slow-png-optimization" title="Link to this heading"></a></h2>
+<p>YOGA allows you to select an alternative preset for PNGs optimization. This preset can sometimes gain few bytes over the default one, but it is 10 times slower on average. You will generally not want to enable this.</p>
+<p>To enable this preset, use the <code class="docutils literal notranslate"><span class="pre">--png-slow-optimization</span></code> option:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yoga</span>  <span class="n">image</span>  <span class="o">--</span><span class="n">png</span><span class="o">-</span><span class="n">slow</span><span class="o">-</span><span class="n">optimization</span>  <span class="nb">input</span><span class="o">.</span><span class="n">png</span>  <span class="n">output</span><span class="o">.</span><span class="n">png</span>
+</pre></div>
+</div>
+</section>
+<section id="color-quantization">
+<span id="yoga-image-cli-quantization"></span><h2>Color Quantization<a class="headerlink" href="#color-quantization" title="Link to this heading"></a></h2>
+<p>Color quantization is an operation that reduces the number of distinct colors used in an image.</p>
+<p>To enable the color quantization, use the <code class="docutils literal notranslate"><span class="pre">--enable-quantization</span></code> option:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yoga</span>  <span class="n">image</span>  <span class="o">--</span><span class="n">enable</span><span class="o">-</span><span class="n">quantization</span>  <span class="nb">input</span><span class="o">.</span><span class="n">png</span>  <span class="n">output</span><span class="o">.</span><span class="n">png</span>
+</pre></div>
+</div>
+<p>When color quantization is enabled, YOGA will produce images containing at most 256 colors (8-bit). You can control the maximum number of colors with the <code class="docutils literal notranslate"><span class="pre">--quantization-max-colors</span></code> option. This options takes an integer between <code class="docutils literal notranslate"><span class="pre">1</span></code> and <code class="docutils literal notranslate"><span class="pre">256</span></code> as parameter (<code class="docutils literal notranslate"><span class="pre">256</span></code> is the default value):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yoga</span>  <span class="n">image</span>  <span class="o">--</span><span class="n">enable</span><span class="o">-</span><span class="n">quantization</span>  <span class="o">--</span><span class="n">quantization</span><span class="o">-</span><span class="nb">max</span><span class="o">-</span><span class="n">colors</span><span class="o">=</span><span class="mi">128</span>  <span class="nb">input</span><span class="o">.</span><span class="n">png</span>  <span class="n">output</span><span class="o">.</span><span class="n">png</span>
+</pre></div>
+</div>
+<p>By default, YOGA will use dithering to reduce the visual impact of the color loss, but this have an incidence on the efficiency of the compression. You can control the level of the dithering or disable it using the <code class="docutils literal notranslate"><span class="pre">--quantization-dithering-level</span></code> option, that takes a number between <code class="docutils literal notranslate"><span class="pre">0.0</span></code> and <code class="docutils literal notranslate"><span class="pre">1.0</span></code> as value:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code>: no dithering</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1.0</span></code>: maximal dithering</p></li>
+</ul>
+<p>The default value is <code class="docutils literal notranslate"><span class="pre">1.0</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yoga</span>  <span class="n">image</span>  <span class="o">--</span><span class="n">enable</span><span class="o">-</span><span class="n">quantization</span>  <span class="o">--</span><span class="n">quantization</span><span class="o">-</span><span class="n">dithering</span><span class="o">-</span><span class="n">level</span><span class="o">=</span><span class="mf">0.5</span>  <span class="nb">input</span><span class="o">.</span><span class="n">png</span>  <span class="n">output</span><span class="o">.</span><span class="n">png</span>
+</pre></div>
+</div>
+<p>Here are examples of the effect of the dithering levels:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Preview</p></th>
+<th class="head"><p>max-colors</p></th>
+<th class="head"><p>dithering-level</p></th>
+<th class="head"><p>File size</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="../_images/dithering-original-image.png"><img alt="orig" src="../_images/dithering-original-image.png" style="width: 150px;" /></a></p></td>
+<td colspan="2"><p>Original image (quantization disabled)</p></td>
+<td><p>7,2 kB</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../_images/dithering-1.0-colors-5.png"><img alt="d1.0" src="../_images/dithering-1.0-colors-5.png" style="width: 150px;" /></a></p></td>
+<td><p>5</p></td>
+<td><p>1.0</p></td>
+<td><p>1.4 kB</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../_images/dithering-0.75-colors-5.png"><img alt="d0.75" src="../_images/dithering-0.75-colors-5.png" style="width: 150px;" /></a></p></td>
+<td><p>5</p></td>
+<td><p>0.75</p></td>
+<td><p>1.4 kB</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../_images/dithering-0.5-colors-5.png"><img alt="d0.5" src="../_images/dithering-0.5-colors-5.png" style="width: 150px;" /></a></p></td>
+<td><p>5</p></td>
+<td><p>0.5</p></td>
+<td><p>1.2 kB</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../_images/dithering-0.25-colors-5.png"><img alt="d0.25" src="../_images/dithering-0.25-colors-5.png" style="width: 150px;" /></a></p></td>
+<td><p>5</p></td>
+<td><p>0.25</p></td>
+<td><p>626 B</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../_images/dithering-0.0-colors-5.png"><img alt="d0.0" src="../_images/dithering-0.0-colors-5.png" style="width: 150px;" /></a></p></td>
+<td><p>5</p></td>
+<td><p>0.0</p></td>
+<td><p>180 B</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In some cases, like PNG to PNG optimisation, the quantization can be
+ignored by YOGA if it produces an output image larger that the input one.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Command Line Interface" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="model.html" class="btn btn-neutral float-right" title="YOGA Model Command Line Interface" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017-2024, Wanadev.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
